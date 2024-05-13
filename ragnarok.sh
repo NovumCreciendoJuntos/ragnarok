@@ -21,6 +21,21 @@ function base_action(){
   fi
  done
 }
+function flatpaks_packages(){
+  if command -v flatpak &> /dev/null; then
+      if flatpak list &> /dev/null; then
+         base_action "Tiene paquetes flatpak instalados. ¿Desea actualizarlos?" "flatpak update" "Sus paquetes flatpaks han sido actualizados correctamente" "Ha fallado la actualización de sus paquetes flatpaks"
+      fi
+  fi
+}
+
+function snaps_packages(){
+  if command -v snap &> /dev/null; then
+      if snap list &> /dev/null; then
+         base_action "Tiene paquetes flatpak instalados. ¿Desea actualizarlos?" "snap refresh" "Sus paquetes flatpaks han sido actualizados correctamente" "Ha fallado la actualización de sus paquetes flatpaks"
+      fi
+  fi
+}
 
 #Detección automática del Sistema instalado y realización de tareas en base al Sistema
 if command -v apt >> /dev/null; then
@@ -32,6 +47,8 @@ if command -v apt >> /dev/null; then
       sudo apt clean && sudo apt autoclean
     }
     base_action "¿Desea actualizar su Sistema?" update_and_upgrade "Actualización completada." "Hubo un error durante la actualización de su Sistema"
+    flatpaks_packages
+    snaps_packages
     base_action "¿Quieres eliminar los paquetes huérfanos?" "sudo apt autoremove" "Paquetes huérfanos eliminados." "Hubo un error al eliminar los paquetes huérfanos"
     base_action "¿Quieres eliminar la caché de paquetes?" clean_cache "Caché limpiada." "Hubo un error al limpiar la caché"
 
@@ -48,12 +65,16 @@ elif command -v pacman >> /dev/null; then
       sudo pacman -Scc && sudo yay -Sc
     }
   base_action "¿Desea actualizar su Sistema?" update_and_upgrade "Actualización completada." "Hubo un error durante la actualización de su Sistema"
+  flatpaks_packages
+  snaps_packages
   base_action "¿Quieres eliminar los paquetes huérfanos?" clean_orphaned "Paquetes huérfanos eliminados." "Hubo un error al eliminar los paquetes huérfanos"
   base_action "¿Quieres eliminar la caché de paquetes?" clean_cache "Caché limpiada." "Hubo un error al limpiar la caché"
 
 elif command -v rpm >> /dev/null; then
   echo "Está utilizando Fedora o una derivada, procederemos a realizar una actualización completa de su Sistema"
   base_action "¿Desea actualizar su Sistema?" "sudo dnf upgrade" "Actualización completada." "Hubo un error durante la actualización de su Sistema"
+  flatpaks_packages
+  snaps_packages
   base_action "¿Quieres eliminar los paquetes huérfanos?" "sudo dnf autoremove" "Paquetes huérfanos eliminados." "Hubo un error al eliminar los paquetes huérfanos"
   base_action "¿Quieres eliminar la caché de paquetes?" "sudo dnf clean all" "Caché limpiada." "Hubo un error al limpiar la caché"
 
@@ -66,6 +87,8 @@ else
     }
 
   base_action "¿Desea actualizar su Sistema?" update_and_upgrade "Actualización completada." "Hubo un error durante la actualización de su Sistema"
+  flatpaks_packages
+  snaps_packages
   # Eliminación de paquetes innecesarios en OpenSUSE
   temp=true
   while $temp;do
