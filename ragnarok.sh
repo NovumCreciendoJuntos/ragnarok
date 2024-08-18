@@ -1,5 +1,54 @@
 #!/bin/bash
 
+echo " _______                                                           __                  ______                      _               _    ";
+echo "|_   __ \                                                         [  |  _            .' ____ \                    (_)             / |_  ";
+echo "  | |__) |    ,--.     .--./)  _ .--.    ,--.    _ .--.    .--.    | | / ]   ______  | (___ \_|  .---.   _ .--.   __    _ .--.   \`| |-' ";
+echo "  |  __ /    \`'_\ :   / /'\`\; [ \`.-. |  \`'_\ :  [ \`/'\`\] / .'\`\ \  | '' <   |______|  _.____\`.  / /'\`\] [ \`/'\`\] [  |  [ '/'\`\ \  | |   ";
+echo " _| |  \ \_  // | |,  \ \._//  | | | |  // | |,  | |     | \__. |  | |\`\ \           | \____) | | \__.   | |      | |   | \__/ |  | |,  ";
+echo "|____| |___| \'-;__/  .',__\`  [___||__] \'-;__/ [___]     '.__.'  [__|  \_]           \______.' '.___.' [___]    [___]  | ;.__/   \__/  ";
+echo "                     ( ( __))                                                                                          [__|             ";
+                                                                                                                                         
+
+
+
+
+echo " ____  _____                                                       ______     _                                         _           ";
+echo "|_   \|_   _|                                                    .' ____ \   (_)                                       (_)          ";
+echo "  |   \ | |     .--.    _   __   __   _    _ .--..--.    ______  | (___ \_|  __    _ .--.    .---.   _ .--.    .--./)  __    ,--.   ";
+echo "  | |\ \| |   / .'\`\ \ [ \ [  ] [  | | |  [ \`.-. .-. |  |______|  _.____\`.  [  |  [ \`.-. |  / /__\\ [ \`/'\`\]  / /'\`\; [  |  \`'_\ :  ";
+echo " _| |_\   |_  | \__. |  \ \/ /   | \_/ |,  | | | | | |           | \____) |  | |   | | | |  | \__.,  | |      \ \._//  | |  // | |, ";
+echo "|_____|\____|  '.__.'    \__/    '.__.'_/ [___||__||__]           \______.' [___] [___||__]  '.__.' [___]     .',__\`  [___] \'-;__/ ";
+echo "                                                                                                             ( ( __))               ";
+
+
+echo "╔═╗┬─┐┌─┐┬ ┬┌─┐┌─┐┌┬┐┌─┐  ╦  ┬┌┐┌┬ ┬─┐ ┬┌─┐┬─┐┌─┐  ╦ ╦┬┌─┐┌─┐┌─┐┌┐┌┌─┐┬ ┬┌─┐┌┐ ┬  ┌─┐┌┐┌┌┬┐┌─┐";
+echo "╠═╝├┬┘│ │└┬┘├┤ │   │ │ │  ║  │││││ │┌┴┬┘├┤ ├┬┘│ │  ╠═╣│└─┐├─┘├─┤││││ │├─┤├─┤├┴┐│  ├─┤│││ │ ├┤ ";
+echo "╩  ┴└─└─┘ ┴ └─┘└─┘ ┴ └─┘  ╩═╝┴┘└┘└─┘┴ └─└─┘┴└─└─┘  ╩ ╩┴└─┘┴  ┴ ┴┘└┘└─┘┴ ┴┴ ┴└─┘┴─┘┴ ┴┘└┘ ┴ └─┘";
+
+echo
+# Función para imprimir texto con formato
+print_text() {
+    local text="$1"
+    local color="$2"
+    echo -ne "$(tput setaf $color)$(tput bold)$text$(tput sgr0)"
+}
+
+# Texto en ASCII
+ascii_text() {
+    local text="$1"
+    local color="$2"
+    echo -ne "$(tput setaf $color)$(tput bold)$text$(tput sgr0)"
+}
+
+# Mostrar el texto formateado
+print_text "Escrito por: " 2
+ascii_text "Lord_Sith_Muldorgs" 4
+ascii_text " y " 5
+ascii_text "ArcMetatron" 6
+echo
+echo
+
+
 # Este script permite al usuario seleccionar su gestor de paquetes y realizar varias operaciones de mantenimiento del sistema.
 # En esta actualizaciòn se elimina la pregunta al usuario del Sistema utilizado y se detecta automàticamente cual es el sistema instalado por su #gestor de paquetes
 echo "EN ESTE SCRIPT POR REALIZARSE ALGUNAS OPERACIONES ADMINISTRATIVAS SE LE PEDIRÁ AL USUARIO VARIAS VECES SU CONTRASEÑA, SEA RESPONSABLE EN LA IMPLEMENTACIÓN DEL MISMO"
